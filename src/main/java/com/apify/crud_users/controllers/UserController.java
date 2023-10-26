@@ -4,6 +4,8 @@ import com.apify.crud_users.models.UserModel;
 import com.apify.crud_users.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -15,10 +17,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
-
-
-
    @Autowired
     private UserService userService;
     //@CrossOrigin(origins = "http://127.0.0.1:5500/index.html")
@@ -27,11 +25,30 @@ public class UserController {
     public ArrayList<UserModel> getUsers() {
         return this.userService.getUsers();
     }
-    @CrossOrigin(origins = "*")
+
+
+   /* @CrossOrigin(origins = "*")
     @PostMapping(path = "/add")
     public UserModel setUser(@RequestBody UserModel user) {
+        if (user.equals(userService))
         return this.userService.saveUser(user);
+        else {return null;}
+    }*/
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/add")
+    public ResponseEntity<UserModel> setUser(@RequestBody UserModel user) {
+        Optional<UserModel> existingUser = userService.getById(Long.valueOf(user.getId()));
+        if (existingUser.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+        } else {
+            UserModel savedUser = userService.saveUser(user);
+            return ResponseEntity.ok(savedUser);
+        }
     }
+
+
+
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/get-an-user/{id}")

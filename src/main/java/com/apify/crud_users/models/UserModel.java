@@ -2,6 +2,8 @@ package com.apify.crud_users.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table (name="users")
 public class UserModel {
@@ -17,6 +19,8 @@ public class UserModel {
 
     @Column
     private String email;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
+    private List<SongModel> songs;
 
     public Integer getId() {
         return id;
