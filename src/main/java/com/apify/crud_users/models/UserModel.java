@@ -5,52 +5,39 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table (name="users")
+@Table(name = "users")
 public class UserModel {
+    //@GeneratedValue (strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
     @Column
-    private  String first_name;
-
-
+    private String display_name;
     @Column
-    private String  last_name;
-
-    @Column
-    private String email;
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
+    private String url_photo;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<SongModel> songs;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getDisplay_name() {
+        return display_name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setDisplay_name(String display_name) {
+        this.display_name = display_name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getUrl_photo() {
+        return url_photo;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUrl_photo(String url_photo) {
+        this.url_photo = url_photo;
     }
 }

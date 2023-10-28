@@ -19,11 +19,11 @@ public class UserService {
     public  UserModel saveUser(UserModel user) {
         return userRepository.save(user);
     }
-    public Optional<UserModel> getById(Long id){
+    public Optional<UserModel> getById(String id){
         return userRepository.findById(id);
     }
 
-    public Boolean deleteUser (Long id){
+    public Boolean deleteUser (String id){
         try {
             userRepository.deleteById(id);
             return true;

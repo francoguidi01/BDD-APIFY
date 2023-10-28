@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 @Entity
 @Table (name = "songs")
 public class SongModel {
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_song;
     @Column
     private String id_api_song;
@@ -39,8 +39,3 @@ public class SongModel {
         this.user = user;
     }
 }
-
-//id_song_users INT AUTO_INCREMENT PRIMARY KEY,
-//    id_song VARCHAR(100) NOT NULL,
-//    id_user INT NOT NULL,
-//    FOREIGN KEY (id_user) REFERENCES users (id)

@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 @Repository
 public interface IUSongRepository extends JpaRepository<SongModel, Integer> {
-    ArrayList<SongModel> findByUserId(Integer userId);
+    ArrayList<SongModel> findByUserId(String userId);
 }

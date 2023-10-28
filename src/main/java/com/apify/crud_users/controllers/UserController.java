@@ -38,7 +38,7 @@ public class UserController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add")
     public ResponseEntity<UserModel> setUser(@RequestBody UserModel user) {
-        Optional<UserModel> existingUser = userService.getById(Long.valueOf(user.getId()));
+        Optional<UserModel> existingUser = userService.getById(user.getId());
         if (existingUser.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         } else {
@@ -52,13 +52,13 @@ public class UserController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/get-an-user/{id}")
-    public Optional<UserModel> getUserById(@PathVariable("id") Long id) {
+    public Optional<UserModel> getUserById(@PathVariable("id") String id) {
         return this.userService.getById(id);
     }
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/delete/{id}")
-    public String deleteById(@PathVariable("id") Long id) {
+    public String deleteById(@PathVariable("id") String id) {
         boolean deleted = this.userService.deleteUser(id);
         if (deleted) {
             return "user was deleted";

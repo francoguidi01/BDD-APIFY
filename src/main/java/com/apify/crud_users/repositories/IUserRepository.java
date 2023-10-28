@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface IUserRepository extends JpaRepository<UserModel, Long> {
+public interface IUserRepository extends JpaRepository<UserModel, String> {
    // ArrayList<UserModel>
 }

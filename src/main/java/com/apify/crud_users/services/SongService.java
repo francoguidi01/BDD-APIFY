@@ -10,20 +10,20 @@ import java.util.ArrayList;
 @Service
 public class SongService {
     @Autowired
-    IUSongRepository songXusersRepository;
+    IUSongRepository songRepository;
 
-    public ArrayList<SongModel>getSongs(){return (ArrayList<SongModel>) songXusersRepository.findAll();}
+    public ArrayList<SongModel>getSongs(){return (ArrayList<SongModel>) songRepository.findAll();}
 
     public SongModel saveSong(SongModel songs) {
-        return songXusersRepository.save(songs);
+        return songRepository.save(songs);
     }
-    public ArrayList<SongModel> getSongsByUserId(Integer userId) {
-        return songXusersRepository.findByUserId(userId);
+    public ArrayList<SongModel> getSongsByUserId(String userId) {
+        return songRepository.findByUserId(userId);
     }
 
     public Boolean deleteSong (Integer id){
         try {
-            songXusersRepository.deleteById(id);
+            songRepository.deleteById(id);
             return true;
         }catch (Exception e) {
             return false;
