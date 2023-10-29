@@ -3,10 +3,11 @@ package com.apify.crud_users.models;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class UserModel {
+public class User {
     //@GeneratedValue (strategy = GenerationType.IDENTITY)
     @Id
     private String id;
@@ -16,6 +17,16 @@ public class UserModel {
     private String url_photo;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<SongModel> songs;
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Artist> artist;
+
+    @OneToMany(mappedBy = "user1", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Friend> friendRequestsSent;
+
+    @OneToMany(mappedBy = "user2", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Friend> friendRequestsReceived;
+
+
 
     public String getId() {
         return id;

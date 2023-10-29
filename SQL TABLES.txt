@@ -1,11 +1,11 @@
 create database users_apify;
 -- Selecciona la base de datos
 -- drop database users_apify;
+-- DROP TABLE friends;
 USE users_apify;
 
-
+select * from users;
 -- DROP TABLE songsXusers;
-
 CREATE TABLE users (
     id VARCHAR(300) PRIMARY KEY,
     display_name VARCHAR(255) NOT NULL,
@@ -17,6 +17,21 @@ CREATE TABLE songs (
     id_api_song VARCHAR(100) NOT NULL,
     id_user VARCHAR(300) NOT NULL,
     FOREIGN KEY (id_user) REFERENCES users (id)
+);
+
+CREATE TABLE artists(
+	id_artist INT PRIMARY KEY,
+    id_api_artist VARCHAR(100) NOT NULL,
+    id_user VARCHAR(300) NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES users (id)
+);
+
+CREATE TABLE friends(
+id_friend INT auto_increment PRIMARY KEY,
+first_user_id VARCHAR (300) NOT NULL,
+FOREIGN KEY (first_user_id) REFERENCES users (id),
+second_user_id VARCHAR (300) NOT NULL,
+FOREIGN KEY (second_user_id) REFERENCES users (id)
 );
 
 -- Insertar datos en la tabla "users"
@@ -33,5 +48,17 @@ VALUES
     (2, 'Canción 2', 'user1'),
     (3, 'Canción 3', 'user2'),
     (4, 'Canción 4', 'user3');
+
+-- Insertar el primer artista
+INSERT INTO artists (id_artist, id_api_artist, id_user) VALUES (1, 'ID_API_Artista_1', 'user2');
+
+-- Insertar el segundo artista
+INSERT INTO artists (id_artist, id_api_artist, id_user) VALUES (2, 'ID_API_Artista_2', 'user3');
+
+-- Insertar una amistad entre usuario 1 y usuario 2
+INSERT INTO friends (first_user_id, second_user_id) VALUES ('francoguidi1235', 'user2');
+
+-- Insertar una amistad entre usuario 2 y usuario 1 (recuerda que las amistades son bidireccionales)
+INSERT INTO friends (first_user_id, second_user_id) VALUES ('user2', 'user3');
 
 

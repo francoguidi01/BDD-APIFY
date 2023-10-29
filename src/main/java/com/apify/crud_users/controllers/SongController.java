@@ -1,8 +1,7 @@
 package com.apify.crud_users.controllers;
 
 import com.apify.crud_users.models.SongModel;
-import com.apify.crud_users.models.UserModel;
-import com.apify.crud_users.repositories.IUSongRepository;
+import com.apify.crud_users.models.User;
 import com.apify.crud_users.repositories.IUserRepository;
 import com.apify.crud_users.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class SongController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add-song")
     public ResponseEntity<SongModel> setSong(@RequestBody SongModel song) {
-        Optional<UserModel> userModelOptional = iUserRepository.findById(song.getUser().getId());
+        Optional<User> userModelOptional = iUserRepository.findById(song.getUser().getId());
         if(!userModelOptional.isPresent()){
             return ResponseEntity.unprocessableEntity().build();
         }

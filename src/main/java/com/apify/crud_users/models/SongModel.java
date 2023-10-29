@@ -12,7 +12,7 @@ public class SongModel {
     private String id_api_song;
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "id_user")
-    private UserModel user;
+    private User user;
 
 
     public Integer getId_song() {
@@ -31,11 +31,11 @@ public class SongModel {
         this.id_api_song = id_api_song;
     }
 
-    public UserModel getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserModel user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

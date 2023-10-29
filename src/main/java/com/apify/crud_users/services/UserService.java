@@ -1,6 +1,6 @@
 package com.apify.crud_users.services;
 
-import com.apify.crud_users.models.UserModel;
+import com.apify.crud_users.models.User;
 import com.apify.crud_users.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +13,13 @@ public class UserService {
     @Autowired
     IUserRepository userRepository;
 
-    public ArrayList<UserModel> getUsers() {
-        return (ArrayList<UserModel>) userRepository.findAll();
+    public ArrayList<User> getUsers() {
+        return (ArrayList<User>) userRepository.findAll();
     }
-    public  UserModel saveUser(UserModel user) {
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
-    public Optional<UserModel> getById(String id){
+    public Optional<User> getById(String id){
         return userRepository.findById(id);
     }
 
