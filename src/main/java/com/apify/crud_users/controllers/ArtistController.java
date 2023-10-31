@@ -4,7 +4,7 @@ import com.apify.crud_users.models.Artist;
 
 import com.apify.crud_users.models.User;
 
-import com.apify.crud_users.repositories.IUserRepository;
+import com.apify.crud_users.repositories.UserRepository;
 import com.apify.crud_users.services.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class ArtistController {
 
     @Autowired
-    private IUserRepository iUserRepository;
+    private UserRepository userRepository;
     @Autowired
     private ArtistService artistService;
 
@@ -37,7 +37,7 @@ public class ArtistController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add-artist")
     public ResponseEntity<Artist> setArtist(@RequestBody Artist artist) {
-        Optional<User> userModelOptional = iUserRepository.findById(artist.getUser().getId());
+        Optional<User> userModelOptional = userRepository.findById(artist.getUser().getId());
         if(!userModelOptional.isPresent()){
             return ResponseEntity.unprocessableEntity().build();
         }

@@ -22,15 +22,6 @@ public class UserController {
         return this.userService.getUsers();
     }
 
-
-   /* @CrossOrigin(origins = "*")
-    @PostMapping(path = "/add")
-    public User setUser(@RequestBody User user) {
-        if (user.equals(userService))
-        return this.userService.saveUser(user);
-        else {return null;}
-    }*/
-
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add")
     public ResponseEntity<User> setUser(@RequestBody User user) {
@@ -42,9 +33,6 @@ public class UserController {
             return ResponseEntity.ok(savedUser);
         }
     }
-
-
-
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/get-an-user/{id}")

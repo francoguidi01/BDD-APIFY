@@ -26,7 +26,8 @@ public class User {
     @OneToMany(mappedBy = "user2", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Friend> friendRequestsReceived;
 
-
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    private List<Leaderboard> leaderboards;
 
     public String getId() {
         return id;

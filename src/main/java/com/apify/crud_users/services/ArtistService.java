@@ -1,8 +1,7 @@
 package com.apify.crud_users.services;
 
 import com.apify.crud_users.models.Artist;
-import com.apify.crud_users.models.SongModel;
-import com.apify.crud_users.repositories.IUArtistRepository;
+import com.apify.crud_users.repositories.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 public class ArtistService {
 
     @Autowired
-    IUArtistRepository artistRepository;
+    ArtistRepository artistRepository;
 
     public ArrayList<Artist> getArtists() {
         return (ArrayList<Artist>) artistRepository.findAll();

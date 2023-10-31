@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface IUSongRepository extends JpaRepository<SongModel, Integer> {
+public interface SongRepository extends JpaRepository<SongModel, Integer> {
     ArrayList<SongModel> findByUserId(String userId);
 }

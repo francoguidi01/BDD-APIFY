@@ -1,7 +1,7 @@
 package com.apify.crud_users.services;
 
 import com.apify.crud_users.models.SongModel;
-import com.apify.crud_users.repositories.IUSongRepository;
+import com.apify.crud_users.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @Service
 public class SongService {
     @Autowired
-    IUSongRepository songRepository;
+    SongRepository songRepository;
 
     public ArrayList<SongModel>getSongs(){return (ArrayList<SongModel>) songRepository.findAll();}
 

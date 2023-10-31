@@ -1,18 +1,17 @@
 package com.apify.crud_users.services;
 
 import com.apify.crud_users.models.Friend;
-import com.apify.crud_users.repositories.IUFriendRepository;
+import com.apify.crud_users.repositories.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FriendService {
 
     @Autowired
-    private IUFriendRepository friendRepository;
+    private FriendRepository friendRepository;
 
     public List<Friend> getAllFriendRequests() {
         return friendRepository.findAll();

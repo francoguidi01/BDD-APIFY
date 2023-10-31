@@ -2,8 +2,7 @@ package com.apify.crud_users.controllers;
 
 import com.apify.crud_users.models.Friend;
 import com.apify.crud_users.models.User;
-import com.apify.crud_users.repositories.IUFriendRepository;
-import com.apify.crud_users.repositories.IUserRepository;
+import com.apify.crud_users.repositories.UserRepository;
 import com.apify.crud_users.services.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 public class FriendController {
     @Autowired
-    private IUserRepository iUserRepository;
+    private UserRepository userRepository;
     @Autowired
     private FriendService friendService;
     @CrossOrigin(origins = "*")
@@ -42,8 +41,8 @@ public class FriendController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add-friend")
     public ResponseEntity<Friend> addFriend(@RequestBody Friend friend) {
-        Optional<User> userModelOptional = iUserRepository.findById(friend.getUser1().getId());
-        Optional<User> userModelOptional2 = iUserRepository.findById(friend.getUser2().getId());
+        Optional<User> userModelOptional = userRepository.findById(friend.getUser1().getId());
+        Optional<User> userModelOptional2 = userRepository.findById(friend.getUser2().getId());
 
         if(!userModelOptional.isPresent() && !userModelOptional2.isPresent()){
             return ResponseEntity.unprocessableEntity().build();
