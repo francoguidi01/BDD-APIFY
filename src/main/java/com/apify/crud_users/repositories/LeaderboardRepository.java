@@ -12,7 +12,7 @@ public interface LeaderboardRepository extends JpaRepository<Leaderboard, Intege
     @Query("SELECT l FROM Leaderboard l ORDER BY l.points DESC")
     List<Leaderboard> findAllOrderByPointsDesc();
 
-    @Query("SELECT new com.apify.crud_users.DTOS.LeaderboardDTO(u.display_name, l.points) FROM Leaderboard l JOIN l.user u ORDER BY l.points DESC")
+    @Query("SELECT new com.apify.crud_users.DTOS.LeaderboardDTO(u.display_name, u.url_photo, l.points) FROM Leaderboard l JOIN l.user u ORDER BY l.points DESC")
     List<LeaderboardDTO> findLeaderboardOrderByPointsDesc();
 
 
