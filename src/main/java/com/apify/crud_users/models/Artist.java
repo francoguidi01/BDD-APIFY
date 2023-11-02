@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 @Entity
 @Table (name= "artists")
 public class Artist {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Integer id_artist;
 
-    @Column
+    @Column(name= "id_api_artist")
     private String id_api_artist;
 
     @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH, CascadeType.REFRESH})
@@ -22,12 +23,12 @@ public class Artist {
         this.id_artist = id_artist;
     }
 
-    public String getId_api_artists() {
+    public String getId_api_artist() {
         return id_api_artist;
     }
 
-    public void setId_api_artists(String id_api_artists) {
-        this.id_api_artist = id_api_artists;
+    public void setId_api_artist(String id_api_artist) {
+        this.id_api_artist = id_api_artist;
     }
 
     public User getUser() {

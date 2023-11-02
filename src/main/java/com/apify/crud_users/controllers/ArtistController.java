@@ -39,6 +39,7 @@ public class ArtistController {
     public ResponseEntity<Artist> setArtist(@RequestBody Artist artist) {
         Optional<User> userModelOptional = userRepository.findById(artist.getUser().getId());
         if(!userModelOptional.isPresent()){
+            String errorMessage = "User not found. Cannot process the request.";
             return ResponseEntity.unprocessableEntity().build();
         }
         artist.setUser(userModelOptional.get());
