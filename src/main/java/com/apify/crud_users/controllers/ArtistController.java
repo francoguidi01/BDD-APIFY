@@ -45,4 +45,15 @@ public class ArtistController {
         artist.setUser(userModelOptional.get());
         return ResponseEntity.ok(this.artistService.saveArtist(artist));
     }
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(path = "/delete-artist/{id}")
+    public ResponseEntity<String> deleteArtist(@PathVariable("id") Integer id) {
+        if (artistService.deleteArtist(id)) {
+            return ResponseEntity.ok("artist deleted successfully.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

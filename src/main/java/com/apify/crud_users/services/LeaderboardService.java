@@ -18,6 +18,12 @@ public class LeaderboardService {
     public List<Leaderboard> getLeaderboardOrderedByPointsDesc() {
         return leaderboardRepository.findAllOrderByPointsDesc();
     }
+
+    public ArrayList<Leaderboard> getLeaderboardByUserId(String userId) {
+        return leaderboardRepository.findByUserId(userId);
+    }
+
+
     public ArrayList<Leaderboard> getLeaderboard() {
         return (ArrayList<Leaderboard>) leaderboardRepository.findAll();
     }
@@ -29,7 +35,14 @@ public class LeaderboardService {
         return leaderboardRepository.findLeaderboardOrderByPointsDesc();
     }
 
-
+    public Boolean deleteLeaderboard(Integer id) {
+        try {
+            leaderboardRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 
 }

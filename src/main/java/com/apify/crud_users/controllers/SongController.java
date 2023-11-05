@@ -43,5 +43,14 @@ public class SongController {
         return ResponseEntity.ok(this.songService.saveSong(song));
     }
 
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(path = "/delete-song/{id}")
+    public ResponseEntity<String> deleteSong(@PathVariable("id") Integer id) {
+        if (songService.deleteSong(id)) {
+            return ResponseEntity.ok("Song deleted successfully.");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }
