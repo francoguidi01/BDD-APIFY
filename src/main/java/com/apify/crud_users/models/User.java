@@ -15,19 +15,20 @@ public class User {
     private String display_name;
     @Column
     private String url_photo;
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     private List<SongModel> songs;
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     private List<Artist> artist;
+
+    @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
+    private List<Leaderboard> leaderboards;
 
     @OneToMany(mappedBy = "user1", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Friend> friendRequestsSent;
 
     @OneToMany(mappedBy = "user2", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     private List<Friend> friendRequestsReceived;
-
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    private List<Leaderboard> leaderboards;
 
     public String getId() {
         return id;
