@@ -1,6 +1,7 @@
 package com.apify.crud_users.controllers;
 
 import com.apify.crud_users.models.Friend;
+import com.apify.crud_users.models.SongModel;
 import com.apify.crud_users.models.User;
 import com.apify.crud_users.repositories.UserRepository;
 import com.apify.crud_users.services.FriendService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +33,13 @@ public class FriendController {
         List<Friend> friendReceived = friendService.getAllFriendReceived();
         return ResponseEntity.ok(friendReceived);
     }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/get-all-friends")
+    public List<Friend> getAllFriends() {
+        return this.friendService.getAllFriend();
+    }
+
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/get-friends-by-user/{id}")
     public ResponseEntity<List<Friend>> getFriendsByUser(@PathVariable("id") String id) {
