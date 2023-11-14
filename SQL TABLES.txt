@@ -1,7 +1,7 @@
 create database users_apify;
 
 -- Selecciona la base de datos
--- drop database users_apify;
+ drop table artists;
 
 USE users_apify;
 
@@ -15,7 +15,6 @@ CREATE TABLE songs (
     id_song INT auto_increment PRIMARY KEY,
     id_api_song VARCHAR(100) NOT NULL,
     id_user VARCHAR(300) NOT NULL,
-	song_name VARCHAR(300) NOT NULL,
     FOREIGN KEY (id_user) REFERENCES users (id)
 );
 
@@ -23,8 +22,6 @@ CREATE TABLE artists(
 	id_artist INT auto_increment PRIMARY KEY,
     id_api_artist VARCHAR(100) NOT NULL,
     id_user VARCHAR(300) NOT NULL,
-    artist_name VARCHAR(300) NOT NULL,
-    artist_url_photo VARCHAR(300) NOT NULL,
     FOREIGN KEY (id_user) REFERENCES users (id)
 );
 

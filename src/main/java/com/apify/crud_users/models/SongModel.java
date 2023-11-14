@@ -10,20 +10,9 @@ public class SongModel {
     private Integer id_song;
     @Column (name= "id_api_song")
     private String id_api_song;
-    @Column(name= "song_name")
-    private String song_name;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user")
     private User user;
-
-    public String getSong_name() {
-        return song_name;
-    }
-
-    public void setSong_name(String song_name) {
-        this.song_name = song_name;
-    }
 
     public Integer getId_song() {
         return id_song;
