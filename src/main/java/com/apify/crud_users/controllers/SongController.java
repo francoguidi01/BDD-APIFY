@@ -1,6 +1,7 @@
 package com.apify.crud_users.controllers;
 
-import com.apify.crud_users.models.SongModel;
+import com.apify.crud_users.DTOS.SongDTO;
+import com.apify.crud_users.models.Song;
 import com.apify.crud_users.models.User;
 import com.apify.crud_users.repositories.UserRepository;
 import com.apify.crud_users.services.SongService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,19 +24,28 @@ public class SongController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/get-all-songs")
-    public ArrayList<SongModel> getSongs() {
+    public ArrayList<Song> getSongs() {
         return this.songService.getSongs();
     }
 
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/get-songs-by-user/{id}")
-    public ArrayList<SongModel> getSongsByUser(@PathVariable("id") String id) {
+    public ArrayList<Song> getSongsByUser(@PathVariable("id") String id) {
         return songService.getSongsByUserId(id);
     }
+
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/get-dto-songs-by-id/{id}")
+    public List<SongDTO> getSongsByUserId2(@PathVariable("id") String id){
+        return songService.getSongsByUserId2(id);
+    }
+
+
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add-song")
-    public ResponseEntity<SongModel> setSong(@RequestBody SongModel song) {
+    public ResponseEntity<Song> setSong(@RequestBody Song song) {
         Optional<User> userModelOptional = userRepository.findById(song.getUser().getId());
         if(!userModelOptional.isPresent()){
             return ResponseEntity.unprocessableEntity().build();

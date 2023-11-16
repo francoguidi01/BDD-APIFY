@@ -1,5 +1,7 @@
 package com.apify.crud_users.controllers;
 
+import com.apify.crud_users.DTOS.ArtistDTO;
+import com.apify.crud_users.DTOS.SongDTO;
 import com.apify.crud_users.models.Artist;
 
 import com.apify.crud_users.models.User;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,6 +35,12 @@ public class ArtistController {
     @GetMapping(path = "/get-artists-by-user/{id}")
     public ArrayList<Artist> getArtistsByUser(@PathVariable("id") String id) {
         return artistService.getArtistByUserId(id);
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/get-dto-artist-by-id/{id}")
+    public List<ArtistDTO> getArtistsByUserId2(@PathVariable("id") String id){
+        return artistService.getArtistsByUserId2(id);
     }
 
     @CrossOrigin(origins = "*")

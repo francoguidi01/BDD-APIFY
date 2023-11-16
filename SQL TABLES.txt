@@ -1,8 +1,5 @@
 create database users_apify;
 
--- Selecciona la base de datos
- drop table artists;
-
 USE users_apify;
 
 CREATE TABLE users (
@@ -42,33 +39,44 @@ points INT NOT NULL
 
 -- Insertar datos en la tabla "users"
 INSERT INTO users (id, display_name, url_photo)
-VALUES ('PerroSalchicha', 'GordoBachicha', 'assets/HellenWong.jpg');
+VALUES 
+  ('MateoViti777', 'Mateo Mantovano', 'https://i.pinimg.com/736x/bd/a2/b0/bda2b05199e61ec90ee4792d3e6a14f5.jpg'),
+  ('Chico-Mate', 'Lucas Medina', 'https://es.pampadirect.com/product_images/uploaded_images/ritual.jpg'),
+  ('Destiñido_Fede', 'Federico Lo Votrico', 'https://images.pexels.com/photos/6626357/pexels-photo-6626357.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
+  ('Hellen2000', 'Hellen Wong', 'assets/HellenWong.jpg'),
+  ('FacuAlvarez1', 'Facundo Alvarez', 'https://upload.wikimedia.org/wikipedia/commons/e/e9/River_Plate_1969.png'),
+  ('july3p', 'Julian Zapata', 'https://airescriollos.com.ar/wp-content/uploads/2020/11/Milanesa-de-ternera-napolitana.jpg'),
+  ('NicoTiburonBlanco', 'Nicolas Vera', 'https://diariohoynet.nyc3.cdn.digitaloceanspaces.com/adjuntos/galerias/000/483/0000483045.jpg'),
+  ('PepeGrillo', 'Gustavo Sonvico', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Jiminy_Cricket.png/320px-Jiminy_Cricket.png');
+
 
 -- Insertar datos en la tabla "songs" relacionados con usuarios
-INSERT INTO songs (id_song, id_api_song, id_user)
-VALUES
-    (1, 'Canción 1', 'francoguidi1235'),
-    (2, 'Canción 2', 'francoguidi1235'),
-    (3, 'Canción 3', 'francoguidi1235'),
-    (4, 'Canción 4', 'francoguidi1235');
+-- INSERT INTO songs (id_song, id_api_song, id_user)
+-- VALUES
+   -- (1, 'Canción 1', 'francoguidi1235'),
+    -- (2, 'Canción 2', 'francoguidi1235'),
+    -- (3, 'Canción 3', 'francoguidi1235'),
+	-- (4, 'Canción 3', 'francoguidi1235'),
+    -- (5, 'Canción 4', 'francoguidi1235');
 
 -- Insertar el primer artista
-INSERT INTO artists (id_artist, id_api_artist, id_user) 
-VALUES 
-(1, 'ID_API_Artista_1', 'francoguidi1235'),
-(2, 'ID_API_Artista_2', 'francoguidi1235');
+-- INSERT INTO artists (id_artist, id_api_artist, id_user) 
+-- VALUES 
+-- (1, 'ID_API_Artista_1', 'francoguidi1235'),
+-- (2, 'ID_API_Artista_2', 'francoguidi1235');
 
 -- Insertar una amistad entre usuario 1 y usuario 2
 INSERT INTO friends (first_user_id, second_user_id) 
 VALUES 
- 
-('Hellen Wong', 'francoguidi1235'),
-
-('franciscoPorras','francoguidi1235');
+('Hellen2000', 'francoguidi1235'),
+('july3p','kevintolosa2000');
 
 -- Agregar la primera puntuación
 INSERT INTO leaderboard (id_user, points) 
-VALUES ('francoguidi1235', 1300);
+VALUES 
+('MateoViti777', 975),
+('FacuAlvarez1', 860),
+('Hellen2000', 1300);
 
 
 select * from users;
@@ -77,7 +85,14 @@ select * from artists;
 select * from friends;
 select * from leaderboard;
 
+drop table users;
+drop table songs;
+drop table artists;
 drop table friends;
+drop table leaderboard;
 
 DELETE FROM users WHERE id = 'Hellen Wong';
 DELETE FROM friends WHERE first_user_id = 'francoguidi1235';
+
+select s.id_api_song from songs s
+inner join users u on s.id_user=u.id;

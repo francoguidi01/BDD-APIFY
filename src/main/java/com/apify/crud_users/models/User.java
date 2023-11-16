@@ -3,7 +3,6 @@ package com.apify.crud_users.models;
 import jakarta.persistence.*;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -16,7 +15,7 @@ public class User {
     @Column
     private String url_photo;
     @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
-    private List<SongModel> songs;
+    private List<Song> songs;
 
     @OneToMany(mappedBy ="user", cascade = CascadeType.ALL)
     private List<Artist> artist;

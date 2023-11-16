@@ -1,12 +1,10 @@
 package com.apify.crud_users.services;
 
 import com.apify.crud_users.models.Friend;
-import com.apify.crud_users.models.SongModel;
 import com.apify.crud_users.repositories.FriendRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

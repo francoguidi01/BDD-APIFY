@@ -1,7 +1,7 @@
 package com.apify.crud_users.controllers;
 
+import com.apify.crud_users.DTOS.SongDTO;
 import com.apify.crud_users.models.Friend;
-import com.apify.crud_users.models.SongModel;
 import com.apify.crud_users.models.User;
 import com.apify.crud_users.repositories.UserRepository;
 import com.apify.crud_users.services.FriendService;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
